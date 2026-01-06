@@ -1,12 +1,33 @@
-amount = float(input("Enter the amount: "))
-amount_currency = input("Currency of your amount(AUD, KSH): ").lower()
-target_currency = input("Target currency(AUD, KSH): ").lower()
+currencies = ('KSH', 'AUD')
 
-if amount_currency == "aud" and target_currency == "ksh":
-    to_ksh = amount * 86.41
-    print(f"{amount}{amount_currency.upper()} is equal to {to_ksh}{target_currency.upper()}")
-elif amount_currency == "ksh" and target_currency == "aud":
-    to_aud = amount * 0.012
-    print(f"{amount}{amount_currency.upper()} is equal to {to_aud}{target_currency.upper()}")
-else:
-    print("Fill with correct inputs")
+exchange_rates = {
+        'AUD': {'KSH': 86.41},
+        'KSH': {'AUD': 0.012}
+    }
+
+while True:
+    try:
+        user_input = input("Enter the amount(or q to quit): ")
+        if user_input.lower() == 'q':
+            break
+
+        amount = float(user_input)
+        
+        amount_currency = input("Enter the amount currency(KSH/AUD): ").upper()
+        target_currency = input("Enter the target currency(KSH/AUD): ").upper()
+        
+        if amount_currency not in currencies and target_currency not in currencies:
+            print("Invalid currencies")
+        
+        if amount_currency == target_currency:
+            print(amount)
+            
+    except(ValueError, TypeError):
+        print("Enter correct inputs")
+
+    result = amount*exchange_rates[amount_currency][target_currency]
+
+    print(f"{amount}{amount_currency} is {result}{target_currency}")
+
+        
+    
