@@ -28,8 +28,9 @@ def run_quiz(choices, questions, answers):
     
     try:
         for question in questions:
-
+            
             while True:
+                
                 print(question)
 
                 user_answer = input("Your answer: ").lower()   
