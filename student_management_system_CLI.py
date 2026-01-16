@@ -16,24 +16,29 @@ def add_student():
             student_name = input("Student Name: ").strip()
             if not student_name:
                 print("Name cannot be left empty")
+                continue
                 
             if student_name.isdigit():
                 print("Please enter correct input") 
+                continue
                 
             #student age validation    
             student_age = int(input("Student Age: "))
             if student_age <=0 or student_age >=85:
                 print("Please enter age between (1 and 84)")
+                continue
                 
             #student course validation
             student_course = input("Student Course: ").strip()
             if not student_course:
                 print("Student course cannot be left empty")
+                continue
                 
             #student score validation
             student_score = int(input("Student Score: "))
             if not student_score:
                 print("Score cannot be left empty")
+                continue
                 
             #student details(dic)
             student_details = {
@@ -47,11 +52,11 @@ def add_student():
             students.append(student_details)
             #print(f"Successfully added:\n Student ID: {student_id}\n Student Name: {student_name}")
             
+            return student_details
+            
         except(ValueError):
             print("Please enter correct input")    
-            
-        return student_details
-        
+                    
     
 def view_student():
     if students:
